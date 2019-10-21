@@ -1,0 +1,25 @@
+O CORS protege que o backend seja acessado de endereços que a gente não quer que ele seja acessado
+Fui lá na minha pasta backend e adicionei "yarn add cors" e importar ele no meu server.js do backend e tambem colocar app.use(cors);
+
+
+Dentro do meu google chrome, eu ainda não vou conseguir acessar as imagens do meu backend. A minha requisição à api até agora traz o nome
+da imagem no backend, masi isso não é suficiente para eu conseguir mostrar essa imaagem dentro da minha aplicação. Então novamente vou fazer uma alteração
+no me back p/ incluir essa informação dentro da listagem. dentro de spot.js: 
+
+                                        user: {
+                                            type: mongoose.Schema.Types.ObjectId, //estou guardando o id do usuário que criou esse spot (local)
+                                            ref: 'User' //referencia pra qual model é essa infotmação
+                                        }
+                                    }, {
+                                        toJSON: {  //  ou seja, toda vez que um spot for convertido em json, eu quero que calcule os virtuals automaticamente
+                                            virtuals: true,
+                                        },
+                                    });
+
+                                    //vou fzr ele criar um novo campo que vai ser computado pelo js, mas não existe no banco. Dentro do mongoo, isso é chamado de "virtual"
+                                    SpotSchema.virtual('thumbnail_url').get(function(){
+                                        return `http://localhost:3333/files/${this.thumbnail}`
+                                    })
+                                    //então agora eu preciso criar uma rota que devolve essa img pra gente. Então eu vou lá em server.js, importo o path ; app.use('/files', express.static .... ver lá como ficou)
+
+Só ver lá como ficou 
