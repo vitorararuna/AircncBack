@@ -1,0 +1,28 @@
+No Meu Insomnia:
+
+Clica no + para criar uma nova requisição (ou uma nova pasta).
+Eu crio o nome da requisição e então escolho o método
+ 
+Preciso colocar o endereço da minha rota, então:
+http://localhost:3333/nome_rota
+
+Agora vamos conectar noosa aplicação com o banco de dados para começar a fazer as funcionlidades
+Vou estar utilizando o meu mongodb que é um banco de dados não relacional
+Vou criar meu BD dentro de uma ferramentachamada mongodb atlas.
+Dentro do Atlas eu vou criar um servidor (cluster) para os meus vários bancos de dados (Semana2).
+Agora que o servidor está criado, eu preciso liberar acesso para que eu consiga acessar esse servidor pelo node, então:
+Vou em Security -> Database Access --> daí eu crio um novo usuário (vitorararuna anonimo789)
+Agora vou em Network Access -->  Add IP Adress -> Allow Access From Anyware -> Confirm. Isso para liberar o acesso a esse servidor de algum IP
+Agora eu vou em Clusters --> Connect --> Connect your Application -->  Driver=Node.js --> Version=3.0 --> e copio a url
+Antes de usar essa url copiada, vou adicionar a dependencia mongoose (yarn add mongoose) : Ferramenta que nos facilita a trabalhar com os dados dentro do nosso mongoDB
+Agora que instalei o mongoose, eu vou no meu server js e "const mongoose = require('mongoose')" e depois colar a url em mongoose.conect('url'); mas na url, alterar o nome de usuario e a senha  (colocar o que a gente criou) e também alterar o nome da nossa base de dados (vou colocar semana2back)
+
+Ok, agr vou continuar com a nossa aplicação - criando as rotas
+models =  tabela no banco de dados
+controllers = vai receber a requisição pela rota, tratar a requisição e devolver uma resposta
+
+
+Beleza fiz umas coisinhas e na parte da criação do SPOT, nós não vamos utilizar o formato json, mas sim
+o fromato "multipart form" em seu body (só ver no insomnia). Mas o express não entende esse formato. com isso:
+Vou fazer a instalação de uma terceira lib que lida com esse tipo de formato -> "yarn add multer"
+Apos a instalação, eu vou criar uma pasta "COnfig"/"upload.js" para configurar o multer
